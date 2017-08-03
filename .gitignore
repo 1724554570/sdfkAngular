@@ -40,3 +40,13 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# 
+package-lock.json
+
+
+## ng generate component login --inline-template --inline-style
+## ng g c login -it -is 创建组件模块
+## ng g s core/auth     创建service
+##
+##
