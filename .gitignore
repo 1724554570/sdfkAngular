@@ -50,3 +50,6 @@ package-lock.json
 ## ng g s core/auth     创建service
 ##
 ##
+/nbproject
+/nbproject/private/
+
