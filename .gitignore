@@ -1,4 +1,4 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
+﻿# See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
 /dist
@@ -47,8 +47,10 @@ package-lock.json
 
 ## ng generate component login --inline-template --inline-style
 ## ng g c login -it -is 创建组件模块
+## ng g c login         创建组件模块&html
 ## ng g s core/auth     创建service
 ##
+## json-server ./src/app/todo/todo-data.json 启动文件服务器
 ##
 /nbproject
 /nbproject/private/

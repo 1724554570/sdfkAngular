@@ -3,14 +3,16 @@ import { Todo } from './todo.model';
 import { UUID } from 'angular2-uuid';
 
 
-
+// 构建Http请求
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class TodoService {
 
-  private api_url = 'api/todos';
+  //private api_url = 'api/todos';
+  private urls = 'http://localhost:3000';
+  private api_url = this.urls + '/todos';
   private headers = new Headers({ 'Content-Type': 'application/json' });
 
   todos: Todo[] = [];
@@ -27,7 +29,7 @@ export class TodoService {
     return this.http
       .post(this.api_url, JSON.stringify(todo), { headers: this.headers })
       .toPromise()
-      .then(res => res.json().data as Todo)
+      .then(res => res.json() as Todo)
       .catch(this.handleError);
   }
   // PUT /todos/:id
@@ -36,7 +38,8 @@ export class TodoService {
     console.log(url);
     let updatedTodo = Object.assign({}, todo, { completed: !todo.completed });
     return this.http
-      .put(url, JSON.stringify(updatedTodo), { headers: this.headers })
+      //.put(url, JSON.stringify(updatedTodo), { headers: this.headers })
+      .patch(url, JSON.stringify(updatedTodo), { headers: this.headers })
       .toPromise()
       .then(() => updatedTodo)
       .catch(this.handleError);
@@ -54,9 +57,27 @@ export class TodoService {
   getTodos(): Promise<Todo[]> {
     return this.http.get(this.api_url)
       .toPromise()
-      .then(res => res.json().data as Todo[])
+      .then(res => res.json() as Todo[])
       .catch(this.handleError);
   }
+
+  filterTodos(filter: string): Promise<Todo[]> {
+    switch (filter) {
+      case 'ACTIVE': return this.http
+        .get(`${this.api_url}?completed=false`)
+        .toPromise()
+        .then(res => res.json() as Todo[])
+        .catch(this.handleError);
+      case 'COMPLETED': return this.http
+        .get(`${this.api_url}?completed=true`)
+        .toPromise()
+        .then(res => res.json() as Todo[])
+        .catch(this.handleError);
+      default:
+        return this.getTodos();
+    }
+  }
+
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
