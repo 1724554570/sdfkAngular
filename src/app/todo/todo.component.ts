@@ -3,7 +3,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Todo } from './todo.model';
+//import { Todo } from './todo.model';
+import { Todo } from '../entity/entities';
 
 @Component({
   //selector: 'app-todo',

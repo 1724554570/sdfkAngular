@@ -1,30 +1,18 @@
-import { Routes, RouterModule } from '@angular/router';
-import { DetailComponent } from './user/detail/detail.component';
-import { LoginComponent } from './user/login/login.component';
+export class Todo {
+  id: string;
+  desc: string;
+  completed: boolean;
+}
 
-export const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
-  {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'todo',
-    redirectTo: 'todo'
-  },
-  // {
-  //   path: '',
-  //   redirectTo: 'detail',
-  //   pathMatch: 'full'
-  // },
-  // {
-  //   path: 'detail',
-  //   component: DetailComponent
-  // }
-];
+export class User {
+  id: number;
+  username: string;
+  password: string;
+}
 
-export const routing = RouterModule.forRoot(routes);
+export class Auth {
+  user: User;
+  hasError: boolean;
+  errMsg: string;
+  redirectUrl: string;
+}
