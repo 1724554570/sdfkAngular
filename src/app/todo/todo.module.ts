@@ -1,8 +1,8 @@
 // 子模块应用
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+
+import { SharedModule } from '../shared/shared.module';
 
 // 注册路由模块
 import { TodoRoutingModule } from './todo-routing.module';
@@ -19,9 +19,8 @@ import { TodoService } from './todo.service';
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
     HttpModule,
+    SharedModule,
     TodoRoutingModule
   ],
   declarations: [

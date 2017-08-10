@@ -6,13 +6,17 @@ import { Auth } from '../../entity/entities';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styles: []
+  styles: [
+    `
+    .fromdiv{width:300px;margin:10px auto;}
+    `
+  ]
 })
 
 export class LoginComponent implements OnInit {
 
-  username = "";
-  password = "";
+  username = "wang";
+  password = "1234";
   auth: Auth;
 
   constructor( @Inject('auth') private authService, private router: Router) { }
@@ -21,6 +25,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(formValue) {
+    console.log(formValue);
     this.authService.getUserLogin(formValue.login.username, formValue.login.password)
       .then(auth => {
         let redirectUrl = (auth.redirectUrl === null) ? '/' : auth.redirectUrl;
