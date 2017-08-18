@@ -51,6 +51,7 @@ package-lock.json
 ## ng g s core/auth     创建service
 ##
 ## json-server ./src/app/todo/todo-data.json 启动文件服务器
+## json-server ./src/app/data.json 启动文件服务器
 ##
 /nbproject
 /nbproject/private/

@@ -1,49 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
-// 注册样式模块
 import { MdlModule } from 'angular2-mdl';
-
-// 路由模块化
+import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 
-// 加载子模块
-import { CoreModule } from './core/core.module';
-import { TodoModule } from './todo/todo.module';
+import { TodoModule } from './todoModule/todo.module';
+import { LoginModule } from './userModule/user.module';
 
-// 测试使用
-//import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-//import { InMemoryTodoDbService } from './todo/todo-data';
-
-// 加载页面模块
-import { AppComponent } from './action/app.component';
-import { LoginComponent } from './user/login/login.component';
-import { DetailComponent } from './user/detail/detail.component';
-
-// 注册Service服务
-import { AuthService } from './core/auth.service';
-import { UserService } from './core/user.service';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginComponent,
-    DetailComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     HttpModule,
-    //InMemoryWebApiModule.forRoot(InMemoryTodoDbService),
-    AppRoutingModule,
+    MdlModule,
     CoreModule,
-    TodoModule,
-    MdlModule
+    AppRoutingModule,
+    LoginModule,
+    TodoModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
-
 export class AppModule { }

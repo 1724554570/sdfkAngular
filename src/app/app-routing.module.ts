@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
+import { NgModule }     from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './user/login/login.component';
+//import { LoginComponent } from './userModule/login/login.component';
+import { AuthGuardService } from './core/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -9,22 +10,18 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
     path: 'todo',
-    redirectTo: 'todo/ALL'
+    redirectTo: 'todo/ALL',
+    canLoad: [AuthGuardService]
   }
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, { useHash: true })
-    //RouterModule.forRoot(routes)
   ],
   exports: [
     RouterModule
   ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

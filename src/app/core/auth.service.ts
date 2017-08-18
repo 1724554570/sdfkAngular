@@ -1,42 +1,47 @@
 import { Injectable, Inject } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 
-import 'rxjs/add/operator/toPromise';
+import { ReplaySubject, Observable } from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
 import { Auth } from '../entity/entities';
 
 @Injectable()
 export class AuthService {
-
-  constructor(private http: Http, @Inject('user') private userService) { }
-
-  getUserLogin(username: string, password: string): Promise<Auth> {
-    const user = {
-      username: username,
-      userpass: password
-    };
-    return this.userService.findUser(user)
-      .then(user => {
+  auth: Auth = {hasError: true, redirectUrl: '', errMsg: 'not logged in'};
+  subject: ReplaySubject<Auth> = new ReplaySubject<Auth>(1);
+  constructor(private http: Http, @Inject('user') private userService) {
+  }
+  getAuth(): Observable<Auth> {
+    return this.subject.asObservable();
+  }
+  unAuth(): void {
+    this.auth = Object.assign(
+      {},
+      this.auth,
+      {user: null, hasError: true, redirectUrl: '', errMsg: 'not logged in'});
+    this.subject.next(this.auth);
+  }
+  loginWithCredentials(username: string, password: string): Observable<Auth> {
+    return this.userService
+      .findUser(username)
+      .map(user => {
         let auth = new Auth();
-        localStorage.removeItem('userId');
-        let redirectUrl = (localStorage.getItem('redirectUrl') === null) ? '/' : localStorage.getItem('redirectUrl');
-        auth.redirectUrl = redirectUrl;
-        if (null === user) {
+        if (null === user){
+          auth.user = null;
           auth.hasError = true;
           auth.errMsg = 'user not found';
         } else if (password === user.password) {
-          auth.user = Object.assign({}, user);
+          auth.user = user;
           auth.hasError = false;
-          localStorage.setItem('userId', user.id);
+          auth.errMsg = null;
         } else {
+          auth.user = null;
           auth.hasError = true;
           auth.errMsg = 'password not match';
         }
-        return auth;
-      })
-      .catch(this.handleError);
-  }
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
+        this.auth = Object.assign({}, auth);
+        this.subject.next(this.auth);
+        return this.auth;
+      });
   }
 }
