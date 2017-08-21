@@ -9,12 +9,12 @@ import { Todo } from '../entity/entities';
 })
 export class TodoComponent implements OnInit {
 
-  todos : Todo[] = [];
+  todos: Todo[] = [];
 
   constructor(
     @Inject('todoService') private service,
     private route: ActivatedRoute,
-    private router: Router) {}
+    private router: Router) { }
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
@@ -22,7 +22,7 @@ export class TodoComponent implements OnInit {
       this.filterTodos(filter);
     });
   }
-  addTodo(desc: string){
+  addTodo(desc: string) {
     this.service
       .addTodo(desc)
       .then(todo => {
@@ -35,34 +35,34 @@ export class TodoComponent implements OnInit {
       .toggleTodo(todo)
       .then(t => {
         this.todos = [
-          ...this.todos.slice(0,i),
+          ...this.todos.slice(0, i),
           t,
-          ...this.todos.slice(i+1)
-          ];
-        return null;
-      });
-  }
-  removeTodo(todo: Todo): Promise<void>  {
-    const i = this.todos.indexOf(todo);
-    return this.service
-      .deleteTodoById(todo.id)
-      .then(()=> {
-        this.todos = [
-          ...this.todos.slice(0,i),
-          ...this.todos.slice(i+1)
+          ...this.todos.slice(i + 1)
         ];
         return null;
       });
   }
-  filterTodos(filter: string): void{
+  removeTodo(todo: Todo): Promise<void> {
+    const i = this.todos.indexOf(todo);
+    return this.service
+      .deleteTodoById(todo.id)
+      .then(() => {
+        this.todos = [
+          ...this.todos.slice(0, i),
+          ...this.todos.slice(i + 1)
+        ];
+        return null;
+      });
+  }
+  filterTodos(filter: string): void {
     this.service
       .filterTodos(filter)
       .then(todos => this.todos = [...todos]);
   }
-  toggleAll(){
+  toggleAll() {
     Promise.all(this.todos.map(todo => this.toggleTodo(todo)));
   }
-  clearCompleted(){
+  clearCompleted() {
     const completed_todos = this.todos.filter(todo => todo.completed === true);
     const active_todos = this.todos.filter(todo => todo.completed === false);
     Promise.all(

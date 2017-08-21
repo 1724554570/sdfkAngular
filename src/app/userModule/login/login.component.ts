@@ -18,7 +18,7 @@ export class LoginComponent {
 
   onSubmit() {
     this.service
-      .loginWithCredentials(this.username, this.password)
+      .get_user_log_in(this.username, this.password)
       .subscribe(auth => {
         // let redirectUrl = (auth.redirectUrl === null || auth.redirectUrl === undefined) ? '/': auth.redirectUrl;
         this.auth = Object.assign({}, auth);

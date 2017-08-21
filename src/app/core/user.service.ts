@@ -13,17 +13,24 @@ export class UserService {
 
   constructor(private http: Http) { }
 
+  /**
+   * 
+   * @param userId 
+   */
   getUser(userId: number): Observable<User> {
     const url = `${this.api_url}/${userId}`;
-    return this.http.get(url)
-              .map(res => res.json() as User);
+    return this.http.get(url).map(res => res.json() as User);
   }
+
+  /**
+   * 
+   * @param username 
+   */
   findUser(username: string): Observable<User> {
     const url = `${this.api_url}/?username=${username}`;
-    return this.http.get(url)
-              .map(res => {
-                let users = res.json() as User[];
-                return (users.length>0) ? users[0] : null;
-              });
+    return this.http.get(url).map(res => {
+      let users = res.json() as User[];
+      return (users.length > 0) ? users[0] : null;
+    });
   }
 }
