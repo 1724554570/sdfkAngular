@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Auth } from './domain/entities';
+import { Auth } from './entity/entities';
 
 @Component({
   selector: 'app-root',
