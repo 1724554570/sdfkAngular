@@ -10,6 +10,8 @@ import { LoginModule } from './userModule/user.module';
 
 import { AppComponent } from './app.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -19,6 +21,7 @@ import { AppComponent } from './app.component';
     HttpModule,
     MdlModule,
     CoreModule,
+    NgbModule,
     AppRoutingModule,
     LoginModule,
     TodoModule

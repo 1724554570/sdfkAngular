@@ -15,3 +15,8 @@ export class Auth {
   errMsg: string;
   redirectUrl: string;
 }
+export class IAlert {
+  id: number;
+  type: string;
+  message: string;
+}
