@@ -3,11 +3,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 // import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
 import { Auth } from '../../entity/entities';
 
-export interface IAlert {
-  id: number;
-  type: string;
-  message: string;
-}
+import { MdlDialogService, MdlDialogReference } from 'angular2-mdl';
+import { RegisterDialogComponent } from './register-dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -16,50 +13,20 @@ export interface IAlert {
 })
 export class LoginComponent implements OnInit {
 
-  username = 'wang';
-  password = '1234';
+  windowHeight = window.innerHeight - 64;
+  photo = '/assets/login/login_default_bg.jpg';
+  username = '1724554570@qq.com';
+  password = '123456';
   auth: Auth;
-  public alerts: Array<IAlert> = [];
-  private backup: Array<IAlert>;
 
-  constructor( @Inject('auth') private service, private router: Router) { }
+  constructor(
+    @Inject('auth') private service,
+    private dialogService: MdlDialogService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
-    this.alerts.push(
-      {
-        id: 1,
-        type: 'success',
-        message: 'This is an success alert',
-      }, {
-        id: 2,
-        type: 'info',
-        message: 'This is an info alert',
-      }, {
-        id: 3,
-        type: 'warning',
-        message: 'This is a warning alert',
-      }, {
-        id: 4,
-        type: 'danger',
-        message: 'This is a danger alert',
-      }, {
-        id: 5,
-        type: 'primary',
-        message: 'This is a primary alert',
-      }, {
-        id: 6,
-        type: 'secondary',
-        message: 'This is a secondary alert',
-      }, {
-        id: 7,
-        type: 'light',
-        message: 'This is a light alert',
-      }, {
-        id: 8,
-        type: 'dark',
-        message: 'This is a dark alert',
-      });
-    this.backup = this.alerts.map((alert: IAlert) => Object.assign({}, alert));
+    console.log(window.innerHeight);
   }
 
   onSubmit() {
@@ -74,13 +41,20 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  public closeAlert(alert: IAlert) {
-    const index: number = this.alerts.indexOf(alert);
-    this.alerts.splice(index, 1);
-  }
 
-  public reset() {
-    this.alerts = this.backup.map((alert: IAlert) => Object.assign({}, alert));
+  register($event: MouseEvent) {
+    let pDialog = this.dialogService.showCustomDialog({
+      component: RegisterDialogComponent,
+      isModal: true,
+      styles: { 'width': '350px' },
+      clickOutsideToClose: true,
+      enterTransitionDuration: 400,
+      leaveTransitionDuration: 400
+    });
+    pDialog.map((dialogReference: MdlDialogReference) => {
+      console.log('dialog visible', dialogReference);
+    });
+
   }
 
 }

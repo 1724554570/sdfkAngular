@@ -20,3 +20,33 @@ export class IAlert {
   type: string;
   message: string;
 }
+
+export class Users {
+  id: number;
+  uid: string;
+  username: string;
+  imgurl: string;
+  ctime: string;
+  state: number;
+}
+export class UsersInfo {
+  id: number;
+  uid: string;
+  username: string;
+  imgurl: string;
+  ctime: string;
+  state: number;
+}
+
+export class Article {
+  users?: Users;
+  id: number;
+  productname: string;
+  productdesc: string;
+  proctime: string;
+  proutime: string;
+  foruser: number;
+  prostate: number;
+  propower: number;
+  exadmin: number;
+}

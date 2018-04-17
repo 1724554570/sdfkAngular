@@ -20,9 +20,7 @@
             "prefix": "app",
             "styles": [
                 "styles.css",
-                "./assets/mdl.scss",
-                "./assets/_variables.scss",
-                "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+                "./assets/mdl.scss"
             ],
             "scripts": [],
             "environmentSource": "environments/environment.ts",

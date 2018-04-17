@@ -1,5 +1,7 @@
-<div>
-  <form (ngSubmit)="onSubmit()">
+<div class="mdl-grid mdl-grid--no-spacing login-container" [ngStyle]="{'background-image': 'url(' + photo + ')','height':windowHeight+'px'}">
+  <mdl-layout-spacer class="mdl-cell mdl-cell--8-col mdl-cell--4-col-tablet mdl-cell--hide-phone">
+  </mdl-layout-spacer>
+  <form class="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--4-col-phone login-form" (ngSubmit)="onSubmit()">
     <div>
       <mdl-textfield type="text" label="Username..." name="username" floating-label required [(ngModel)]="username" #usernameRef="ngModel">
       </mdl-textfield>
@@ -13,22 +15,12 @@
     </div>
     <div>
       <button mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple type="submit">
-      Login
-    </button>
+        Login
+      </button>
+      <button mdl-button mdl-colored="accent" (click)="register($event)">
+        Register
+      </button>
     </div>
   </form>
+  <mdl-layout-spacer></mdl-layout-spacer>
 </div>
-
-<p>
-
-  <ngb-alert type="success" [dismissible]="false">
-    <strong>Success!</strong> Good work.
-  </ngb-alert>
-
-  </p>
-
-<!-- {{item.id}}/{{item.type}}/{{item.message}} -->
-<p *ngFor="let item of alert">
-  <!-- <alert [type]="item.type" (close)="closeAlert(item)" >{{item.message}}</alert> -->
-  <!-- <ngb-alert [type]="item.type" (close)="closeAlert(item)">{{item.message}}</ngb-alert> -->
-</p>

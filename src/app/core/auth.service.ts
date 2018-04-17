@@ -31,16 +31,16 @@ export class AuthService {
    */
   get_user_log_in(username: string, password: string): Observable<Auth> {
     return this.userService
-      .findUser(username)
-      .map(user => {
+      .findUser(username, password)
+      .map(resp => {
         let auth = new Auth();
-        if (null === user) {
+        if (null === resp) {
           auth.user = null;
           auth.hasError = true;
-          auth.errMsg = 'user not found';
-        } else if (password === user.password) {
-          localStorage.setItem('log_id', user.id);
-          auth.user = user;
+          auth.errMsg = 'resp not found';
+        } else if (password === resp.password) {
+          localStorage.setItem('log_id', resp.id);
+          auth.user = resp;
           auth.hasError = false;
           auth.errMsg = null;
         } else {

@@ -8,9 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { TodoModule } from './todoModule/todo.module';
 import { LoginModule } from './userModule/user.module';
 
-import { AppComponent } from './app.component';
-
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AppComponent } from './base/app.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +19,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpModule,
     MdlModule,
     CoreModule,
-    NgbModule,
     AppRoutingModule,
     LoginModule,
     TodoModule
