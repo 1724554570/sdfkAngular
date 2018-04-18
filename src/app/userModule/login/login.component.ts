@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-// import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
 import { Auth } from '../../entity/entities';
 
 import { MdlDialogService, MdlDialogReference } from 'angular2-mdl';
@@ -33,7 +32,6 @@ export class LoginComponent implements OnInit {
     this.service
       .get_user_log_in(this.username, this.password)
       .subscribe(auth => {
-        // let redirectUrl = (auth.redirectUrl === null || auth.redirectUrl === undefined) ? '/': auth.redirectUrl;
         this.auth = Object.assign({}, auth);
         if (!auth.hasError) {
           this.router.navigate(['todo']);

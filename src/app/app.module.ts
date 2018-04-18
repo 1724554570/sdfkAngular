@@ -10,6 +10,8 @@ import { LoginModule } from './userModule/user.module';
 
 import { AppComponent } from './base/app.component';
 
+//json-server F:\sdfkAngular\src\app\data.json
+
 @NgModule({
   declarations: [
     AppComponent

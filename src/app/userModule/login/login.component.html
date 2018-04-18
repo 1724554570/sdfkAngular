@@ -1,7 +1,7 @@
-<div class="mdl-grid mdl-grid--no-spacing login-container" [ngStyle]="{'background-image': 'url(' + photo + ')','height':windowHeight+'px'}">
-  <mdl-layout-spacer class="mdl-cell mdl-cell--8-col mdl-cell--4-col-tablet mdl-cell--hide-phone">
-  </mdl-layout-spacer>
-  <form class="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--4-col-phone login-form" (ngSubmit)="onSubmit()">
+<div class="mdl-grid mdl-grid--no-spacing login-container">
+  <!-- [ngStyle]="{'background-image': 'url(' + photo + ')'" -->
+
+  <form class="login-form" (ngSubmit)="onSubmit()">
     <div>
       <mdl-textfield type="text" label="Username..." name="username" floating-label required [(ngModel)]="username" #usernameRef="ngModel">
       </mdl-textfield>
@@ -17,10 +17,11 @@
       <button mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple type="submit">
         Login
       </button>
-      <button mdl-button mdl-colored="accent" (click)="register($event)">
+      <button mdl-button (click)="register($event)">
         Register
       </button>
     </div>
   </form>
-  <mdl-layout-spacer></mdl-layout-spacer>
+  
+
 </div>

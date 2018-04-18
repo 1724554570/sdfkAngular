@@ -4,10 +4,21 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
+    background-color: azure;
 }
 
 .login-form {
-    background-color: transparent;
-    display: table;
-    padding-top: 50px;
+    background-color: #fff;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    right: 66px;
+}
+
+.login-container .login-form {
+    margin-top: 10px;
 }
