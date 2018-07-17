@@ -15,6 +15,7 @@ import { RegisterDialogComponent } from './login/register-dialog.component';
     LoginComponent,
     RegisterDialogComponent
   ],
-  entryComponents: [RegisterDialogComponent]
+  entryComponents: [RegisterDialogComponent],
+  providers: []
 })
 export class LoginModule { }

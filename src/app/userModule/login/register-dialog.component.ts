@@ -1,21 +1,9 @@
-import {
-  Component,
-  ViewChild,
-  HostListener,
-  OnInit,
-  Inject
-} from '@angular/core';
+import { Component, ViewChild, HostListener, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  FormGroup,
-  Validators,
-  FormControl,
-  FormBuilder
-} from '@angular/forms';
+import { FormGroup, Validators, FormControl, FormBuilder } from '@angular/forms';
 import { MdlTextFieldComponent } from 'angular2-mdl';
 import { MdlDialogReference } from 'angular2-mdl';
 import { Subscription } from 'rxjs/Subscription';
-
 
 @Component({
   selector: 'app-register-dialog',
@@ -23,6 +11,7 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./register-dialog.component.css']
 })
 export class RegisterDialogComponent {
+
   @ViewChild('firstElement') private inputElement: MdlTextFieldComponent;
   public form: FormGroup;
   public processingRegister = false;
@@ -34,13 +23,16 @@ export class RegisterDialogComponent {
     private fb: FormBuilder,
     private router: Router,
     @Inject('auth') private authService) {
+
     this.form = fb.group({
       'username': new FormControl('', Validators.required),
       'passwords': fb.group({
         'password': new FormControl('', Validators.required),
         'repeatPassword': new FormControl('', Validators.required)
       }, { validator: this.passwordMatchValidator })
+
     });
+
     // just if you want to be informed if the dialog is hidden
     this.dialog.onHide().subscribe((auth) => {
       console.log('login dialog hidden');
@@ -48,13 +40,14 @@ export class RegisterDialogComponent {
         console.log('authenticated user', auth);
       }
     });
+
     this.dialog.onVisible().subscribe(() => {
       this.inputElement.setFocus();
     });
+
   }
 
   passwordMatchValidator(group: FormGroup) {
-    this.statusMessage = '';
     let password = group.get('password').value;
     let confirm = group.get('repeatPassword').value;
 
@@ -79,10 +72,10 @@ export class RegisterDialogComponent {
       .subscribe(auth => {
         this.processingRegister = false;
         this.statusMessage = 'you are registered and will be signed in ...';
-        setTimeout(() => {
-          this.dialog.hide(auth);
-          this.router.navigate(['todo']);
-        }, 500);
+        // setTimeout(() => {
+        //   this.dialog.hide(auth);
+        //   this.router.navigate(['todo']);
+        // }, 500);
       }, err => {
         this.processingRegister = false;
         this.statusMessage = err.message;

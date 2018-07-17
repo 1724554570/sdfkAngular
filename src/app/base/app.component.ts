@@ -8,14 +8,20 @@ import { Auth } from '../entity/entities';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+
   auth: Auth;
   title = 'Awesome Todos';
+  
   constructor(
-    @Inject('auth') private service,
-    private router: Router) { }
+    @Inject('auth') private authService,
+    private router: Router) {
+
+  }
 
   ngOnInit() {
-    this.service.getAuth().subscribe(auth => this.auth = Object.assign({}, auth));
+    this.authService.getAuth().subscribe(auth => {
+      this.auth = Object.assign({}, auth)
+    });
   }
 
   login() {
@@ -23,7 +29,7 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
-    this.service.unAuth();
+    this.authService.unAuth();
     this.auth = null;
     this.router.navigate(['login']);
   }

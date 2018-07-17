@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-//import { LoginComponent } from './userModule/login/login.component';
 import { AuthGuardService } from './core/auth-guard.service';
 
 const routes: Routes = [
@@ -19,7 +18,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes
-      //, { useHash: true }
+      // , { useHash: true }
     )
   ],
   exports: [

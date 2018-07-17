@@ -29,7 +29,7 @@ export class AuthService {
    * @param username 用户名
    * @param password 密码
    */
-  get_user_log_in(username: string, password: string): Observable<Auth> {
+  login(username: string, password: string): Observable<Auth> {
     return this.userService
       .findUser(username, password)
       .map(resp => {
